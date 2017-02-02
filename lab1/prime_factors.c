@@ -6,13 +6,14 @@
 #include <stdio.h> 
 #include <string.h>
 #include <stdlib.h>
+#include <math.h> 
 
-int lpfactor(int x);
+unsigned long long lpfactor(unsigned long long x);
 
 int main(int argc, char * argv[])
 {
     // Variable Declarations
-    int input, result; 
+    unsigned long long input, result; 
 
     // Verify command line argument is valid
     if (argc != 2) {
@@ -27,13 +28,27 @@ int main(int argc, char * argv[])
 
     // Calculate the largest prime factor 
     result = lpfactor(input); 
-    printf("The largest prime factor of %d is %d!\n", input, result);
+    printf("The largest prime factor of %lld is %lld!\n", input, result);
 
 
     return 0; 
 }
 
-int lpfactor(int x) 
+unsigned long long lpfactor(unsigned long long x) 
 {
     // Calculation code goes here 
+    unsigned long long cdiv = 2;
+    unsigned long long ldiv; 
+
+    while (x != 1 || ((cdiv*cdiv) < x)) {
+        if (x % cdiv == 0) {
+            x /= cdiv; 
+            ldiv = cdiv; 
+            // cdiv = 2; 
+        }
+        else {
+            cdiv++; 
+        }
+    }
+    return ldiv; 
 }
