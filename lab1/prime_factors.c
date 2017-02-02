@@ -7,13 +7,17 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h> 
+#include <stdint.h>
+#include <inttypes.h>
 
-unsigned long long lpfactor(unsigned long long x);
+#define __STDC_FORMAT_MACROS
+
+uint64_t lpfactor(uint64_t x);
 
 int main(int argc, char * argv[])
 {
     // Variable Declarations
-    unsigned long long input, result; 
+    uint64_t input, result; 
 
     // Verify command line argument is valid
     if (argc != 2) {
@@ -28,17 +32,17 @@ int main(int argc, char * argv[])
 
     // Calculate the largest prime factor 
     result = lpfactor(input); 
-    printf("The largest prime factor of %lld is %lld!\n", input, result);
+    printf("The largest prime factor of %"PRIu64" is %"PRIu64"!\n", input, result);
 
 
     return 0; 
 }
 
-unsigned long long lpfactor(unsigned long long x) 
+uint64_t lpfactor(uint64_t x) 
 {
     // Calculation code goes here 
-    unsigned long long cdiv = 2;
-    unsigned long long ldiv; 
+    uint64_t cdiv = 2;
+    uint64_t ldiv; 
 
     while (x != 1 || ((cdiv*cdiv) < x)) {
         if (x % cdiv == 0) {
