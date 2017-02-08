@@ -8,6 +8,7 @@
   // 4. No Winner
     // It'll also output total number of valid combinations
 
+#include <stdio.h>
 #include <stdlib.h>
 // #include "tictac.h"
 
@@ -22,7 +23,7 @@ int main(int argc, char * argv[])
 {
   // Variable Declarations
   int TTT[3][3];  // The tic-tac-toe board in question
-  int i, j, total;  // Counter variables
+  int x, row, col, total;  // Counter variables
 
   // Determine Output
   if (argc == 1) {
@@ -40,15 +41,28 @@ int main(int argc, char * argv[])
   // Function that returns all possible legal states that can be passed to the output
 
   // For loop that iterates in trinary up to 3^9 = 19683
-  for (i = 0; i < 3; i++) {
+  for (x = 0; x < LIMIT; x++) {
+	total = x; 
+	for (row = 2; row >= 0; row--) {
+		for (col = 2; col >= 0; col--) {
+			TTT[row][col] = total%3;
+			total /= 3;
+		}
+	}
+	print_board(TTT);
+	printf("\n");
+	print_string(TTT);
+	printf("\n"); 
+  } 
+  /*for (i = 0; i < 3; i++) {
     for (j = 0; j < 3 ; j++) {
       TTT[i][j] = j;
     }
-  }
+  }*/
 
   // Test print:
-  print_board(TTT);
-  print_string(TTT);
+  // print_board(TTT);
+  // print_string(TTT);
 
   return 0;
 
